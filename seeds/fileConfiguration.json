@@ -1,0 +1,15 @@
+{
+  "configurationName": "defaultConfiguration",
+  "configuration": {
+    "UUID": "uuid",
+    "VIN": "vin",
+    "MAKE": "make",
+    "MODEL": "model",
+    "MILEAGE": "mileage",
+    "YEAR": "year",
+    "PRICE": "price",
+    "ZIP CODE": "zipCode",
+    "CREATE DATE": "createDate",
+    "UPDATE DATE": "updateDate"
+  }
+}
