@@ -16,6 +16,13 @@ export class FileUploadService {
     private carService: CarService
   ) {}
 
+  /**
+   * Process a file upload.
+   * @function
+   * @param file - File object to upload.
+   * @param author - The name of provider.
+   * @returns Promise with the  uploaded file
+   */
   async upload(
     file: { originalname: any; buffer: any },
     providerName: string
@@ -40,6 +47,12 @@ export class FileUploadService {
     return createdFile.save();
   }
 
+  /**
+   * Creates a stream with the provided buffer
+   * @function
+   * @param buffer - File buffer.
+   * @returns Readable Stream
+   */
   bufferToStream = (buffer: Buffer): Readable => {
     const stream = new Readable();
     stream.push(buffer);
@@ -47,6 +60,12 @@ export class FileUploadService {
     return stream;
   };
 
+  /**
+   * Converts a csv buffer to an array of objects
+   * @function
+   * @param buffer - CSV File buffer.
+   * @returns Array of objects contained in the csv file
+   */
   parseFile({ buffer }): any[] {
     const csv = buffer.toString();
     const csvToJson = (csv) => {
@@ -80,7 +99,7 @@ export class FileUploadService {
         const obj = {};
         const line = l.split(",");
         Object.values(mappedHeadersToModel).forEach((h, i) => {
-          obj[h] = line[i];
+          obj[h] = line[i]?.trim();
         });
         result.push(obj);
       });
@@ -89,6 +108,11 @@ export class FileUploadService {
     return csvToJson(csv);
   }
 
+  /**
+   * Finds all files
+   * @function
+   * @returns Promise with all the files saved in the db
+   */
   async findAll(): Promise<FileUpload[]> {
     return this.fileUploadModel.find().exec();
   }

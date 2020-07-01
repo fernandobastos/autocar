@@ -26,7 +26,41 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Test API created using NestJs to handle file uploads and process them to create car data given a defined configuration.
+
+TypeDoc located in docs/ folder
+
+## Folder structure
+
+```bash
+├── README.md
+├── nest-cli.json
+├── package.json
+├── seeds
+│   └── fileConfiguration.json
+├── src
+│   ├── app.module.ts
+│   ├── cars
+│   │   ├── car.controller.ts
+│   │   ├── car.module.ts
+│   │   └── car.service.ts
+│   ├── file-uploads
+│   │   ├── file-upload.controller.ts
+│   │   ├── file-upload.module.ts
+│   │   ├── file-upload.service.ts
+│   │   ├── multer-config.ts
+│   │   └── tests
+│   │       ├── file-upload.controller.spec.ts
+│   │       └── file-upload.service.spec.ts
+│   ├── json.d.ts
+│   ├── main.ts
+│   └── schemas
+│       ├── car.schema.ts
+│       └── file_upload.schema.ts
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock
+```
 
 ## Installation
 
@@ -49,20 +83,29 @@ $ yarn start:prod
 
 ## Test
 
+Tests are located inside the src/file-uploads/tests folder
+
 ```bash
 # unit tests
 $ yarn test
 ```
 
+## Examples
+
+Test the api by running on terminal:
+
+```bash
+curl --location --request POST 'http://localhost:3000/fileupload' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--form 'file=testfile.csv' \
+--form 'providerName=test'
+```
+
+The File configuration definition located in seeds/fileConfiguration.json contains the headers and order that the uploaded file has to follow.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
